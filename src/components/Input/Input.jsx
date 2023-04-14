@@ -1,4 +1,6 @@
-export const Input=({
+import "./input.css";
+
+export const Input = ({
   type,
   name,
   autoFocus,
@@ -8,16 +10,16 @@ export const Input=({
   value,
 }) => {
   function handlerChange(e) {
-    const value = e.target.value
-    const nameInput = e.target.name
-    onChange(nameInput, value)
+    const value = e.target.value;
+    const nameInput = e.target.name;
+    onChange(nameInput, value);
   }
   return (
-    <label className='input'>
+    <label className="input">
       {label}
       <input
         type={type}
-        className='input__field'
+        className="input__field"
         name={name}
         autoFocus={autoFocus}
         required={required}
@@ -25,5 +27,5 @@ export const Input=({
         value={value}
       />
     </label>
-  )
-}
+  );
+};

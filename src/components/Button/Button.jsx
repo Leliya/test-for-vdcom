@@ -1,4 +1,6 @@
-export const Button= ({
+import "./button.css";
+
+export const Button = ({
   type,
   classButton,
   buttonName,
@@ -9,9 +11,10 @@ export const Button= ({
     <button
       type={type}
       className={`button button_${classButton}`}
-      disabled={disabled}>
+      disabled={disabled}
+    >
       {buttonName}
       {children}
     </button>
-  )
-}
+  );
+};
