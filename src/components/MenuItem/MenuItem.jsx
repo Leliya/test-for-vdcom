@@ -5,7 +5,7 @@ export function MenuItem({ title, path }) {
   return (
     <NavLink
       className={({ isActive, isPending }) =>
-        isPending ? "menuItem" : isActive ? "menuItem_active" : ""
+        isPending ? "menuItem" : isActive ? "menuItem menuItem_active" : "menuItem"
       }
       to={path}
     >

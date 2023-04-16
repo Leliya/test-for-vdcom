@@ -5,6 +5,7 @@
   line-height: 77px;
   color: #000000;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  text-align: center;
 }
 
 .logo_login {
@@ -13,4 +14,7 @@
 }
 
 .logo_account {
+  width: 100%;
+  margin: 35px auto 30px;
+
 }

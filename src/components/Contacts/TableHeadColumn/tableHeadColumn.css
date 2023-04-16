@@ -1,0 +1,13 @@
+.tableItem__sortUp{
+  cursor: pointer;
+  background-image: url('../../../images/button-up.svg') ;
+  width: 10px;
+  height: 5px;
+}
+
+.tableItem__sortBottom{
+  cursor: pointer;
+  background-image: url('../../../images/button-down.svg') ;
+  width: 10px;
+  height: 5px;
+}

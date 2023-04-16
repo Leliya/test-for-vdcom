@@ -1,0 +1,8 @@
+.account {
+  background-color: #fff;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(200px, 226px) 1fr;
+  grid-template-rows: 95px 1fr;
+}

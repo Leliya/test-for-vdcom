@@ -1,0 +1,76 @@
+.header {
+  grid-row: 1;
+  grid-column: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  box-sizing: border-box;
+}
+
+.search {
+  margin: 0;
+  padding: 0;
+  width: 522px;
+  height: 50px;
+  background: #f2f2f2;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.search__input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  padding: 15px 20px;
+}
+
+.search__input::placeholder {
+  padding-left: 30px;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.15;
+  color: rgba(0, 0, 0, 0.4);
+  background-image: url("../../images/icon-search.svg");
+  background-repeat: no-repeat;
+  background-size: 18px 18px;
+  background-position: center left;
+}
+
+.profile {
+  height: 70px;
+  width: 245px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  align-content: center;
+  font-family: "Poppins";
+  line-height: 1.5;
+  color: #000000;
+}
+
+.profile__avatar {
+  width: 70px;
+  height: 100%;
+  border-radius: 40px;
+  margin-right: 14px;
+  border: 2px solid rgba(0, 0, 0, 0.5);
+}
+
+.profile__name {
+  font-weight: 400;
+  margin: 0;
+  font-size: 22px;
+  opacity: 0.8;
+}
+
+.profile__role {
+  font-weight: 400;
+  font-size: 13px;
+  opacity: 0.7;
+}

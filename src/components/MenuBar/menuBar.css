@@ -1,0 +1,35 @@
+.menuBar {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  grid-row: 1/-1;
+  grid-column: 1;
+}
+
+.menuBar__menu {
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menuBar__logout {
+  position: absolute;
+  bottom: 0;
+  left:0;
+  right: 0;
+  height: 72px;
+  margin-top: auto;
+  border-top: 2px solid #eaeaea;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menuBar__iconLogout{
+  width: 19px;
+  height: 19px;
+  margin-right: 8px;
+  background-image: url('../../images/icon-logout.svg');
+}
