@@ -6,14 +6,14 @@ export const Button = ({
   buttonName,
   children,
   disabled,
-  onSubmit
+  onClick
 }) => {
   return (
     <button
       type={type}
       className={`button button_${classButton}`}
       disabled={disabled}
-      onSubmit={onSubmit}
+      onClick={onClick}
     >
       {buttonName}
       {children}

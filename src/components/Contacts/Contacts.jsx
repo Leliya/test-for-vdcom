@@ -8,10 +8,10 @@ import { TableHeadColumn } from "./TableHeadColumn/TableHeadColumn";
 export function Contacts() {
   const { contacts } = data;
   const [currentContacts, setCurrentContacts] = useState([]);
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    setCurrentContacts(contacts.slice(currentPage * 9, currentPage * 9 + 9));
+    setCurrentContacts(contacts.slice((currentPage-1) * 9, (currentPage-1) * 9 + 9));
   }, [currentPage, contacts]);
 
   const numberPages = () => {
@@ -23,7 +23,13 @@ export function Contacts() {
     return pages;
   };
 
-  console.log(contacts);
+  function changePage(number){
+    if(numberPages().includes(number))
+    setCurrentPage(number)
+    else
+    return false
+  }
+
   return (
     <main className="contacts">
       <h2 className="contacts__title">Total Contacts</h2>
@@ -60,17 +66,19 @@ export function Contacts() {
         </tbody>
       </table>
       <div className="contacts__pages">
-        <Button classButton="pagination" type="button" disabled={false}/>
+        <Button classButton="pagination" type="button" disabled={false} onClick={()=>changePage(currentPage-1)}/>
         {numberPages().map((number) => (
           <Button
             key={number}
-            classButton={number===(currentPage+1)?"page_active":"page"}
+            classButton={number===(currentPage)?"page button_page_active":"page"}
             type="button"
             disabled={false}
             buttonName={number}
+            onClick={()=>
+              changePage(number)}
           />
         ))}
-        <Button classButton="pagination" type="button" disabled={false}/>
+        <Button classButton="pagination" type="button" disabled={false} onClick={()=>changePage(currentPage+1)}/>
       </div>
     </main>
   );
