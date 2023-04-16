@@ -3,11 +3,13 @@ import { MenuBar } from "../../components/MenuBar/MenuBar";
 import { Header } from "../../components/Header/Header";
 import "./account.css";
 
-export function Account() {
+export function Account({onChange}) {
+  
+
   return (
     <div className="account">
       <MenuBar />
-      <Header />
+      <Header onChange={onChange}/>
       <Outlet />
     </div>
   );

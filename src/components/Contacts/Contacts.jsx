@@ -1,34 +1,61 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Button } from "../Button/Button";
 import { TableItem } from "./TableItem/TableItem";
 import data from "./mockContacts";
 import "./contacts.css";
 import { TableHeadColumn } from "./TableHeadColumn/TableHeadColumn";
 
-export function Contacts() {
+export function Contacts({ searchRequest }) {
   const { contacts } = data;
+  const [searchedContacts, setSearchedContacts] = useState();
   const [currentContacts, setCurrentContacts] = useState([]);
+
   const [currentPage, setCurrentPage] = useState(1);
+  console.log(searchRequest);
+  useEffect(() => {
+    if (searchRequest) {
+      const filteredContacts = contacts.filter((contact) =>
+        contact.name.includes(searchRequest)
+      );
+      setSearchedContacts(filteredContacts);
+    }else{
+      setSearchedContacts("")
+    }
+  }, [searchRequest, contacts]);
 
   useEffect(() => {
-    setCurrentContacts(contacts.slice((currentPage-1) * 9, (currentPage-1) * 9 + 9));
-  }, [currentPage, contacts]);
+    setCurrentContacts(
+      (searchedContacts || contacts).slice(
+        (currentPage - 1) * 9,
+        (currentPage - 1) * 9 + 9
+      )
+    );
+  }, [currentPage, contacts, searchedContacts]);
 
-  const numberPages = () => {
-    const max = contacts.length / 9;
+  // useEffect(()=>{
+  //   numberPages()
+  // })
+
+  const numberPages = useMemo(() => {
+    const max =
+      (searchedContacts || contacts).length % 9 === 0
+        ? (searchedContacts || contacts).length / 9
+        : (searchedContacts || contacts).length / 9 + 1;
     const pages = [];
     for (let i = 1; i < max; i++) {
       pages.push(i);
     }
     return pages;
-  };
+  }, [searchedContacts, contacts]);
 
-  function changePage(number){
-    if(numberPages().includes(number))
-    setCurrentPage(number)
-    else
-    return false
+  function changePage(number) {
+    if (numberPages.includes(number)) setCurrentPage(number);
+    else return false;
   }
+
+  // function searchByName() {
+  //   console.log(searchRequest);
+  // }
 
   return (
     <main className="contacts">
@@ -66,19 +93,30 @@ export function Contacts() {
         </tbody>
       </table>
       <div className="contacts__pages">
-        <Button classButton="pagination" type="button" disabled={false} onClick={()=>changePage(currentPage-1)}/>
-        {numberPages().map((number) => (
+        <Button
+          classButton="pagination"
+          type="button"
+          disabled={currentPage === 1}
+          onClick={() => changePage(currentPage - 1)}
+        />
+        {numberPages.map((number) => (
           <Button
             key={number}
-            classButton={number===(currentPage)?"page button_page_active":"page"}
+            classButton={
+              number === currentPage ? "page button_page_active" : "page"
+            }
             type="button"
             disabled={false}
             buttonName={number}
-            onClick={()=>
-              changePage(number)}
+            onClick={() => changePage(number)}
           />
         ))}
-        <Button classButton="pagination" type="button" disabled={false} onClick={()=>changePage(currentPage+1)}/>
+        <Button
+          classButton="pagination"
+          type="button"
+          disabled={currentPage === numberPages.length}
+          onClick={() => changePage(currentPage + 1)}
+        />
       </div>
     </main>
   );

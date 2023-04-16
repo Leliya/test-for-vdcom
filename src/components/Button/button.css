@@ -52,8 +52,14 @@
   background-image: url("../../images/icon-prev-page.svg");
   vertical-align: middle;
 }
+
 .button_pagination:last-of-type {
   transform: rotate(180deg);
+}
+
+.button_pagination:disabled {
+  opacity: 0.3;
+  cursor: default;
 }
 
 .button_page {
@@ -68,7 +74,7 @@
 }
 
 .button_page_active {
-  margin: 0 8px;
+  margin: 0 4px;
   width: 21px;
   height: 21px;
   line-height: 1;
