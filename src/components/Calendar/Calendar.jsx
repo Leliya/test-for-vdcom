@@ -1,7 +1,9 @@
+import "./calendar.css";
+
 export function Calendar() {
   return (
-    <main>
-      <h2 className="">Calendar</h2>
+    <main className="calendar">
+      <h2 className="calendar__title">Calendar</h2>
     </main>
   );
 }

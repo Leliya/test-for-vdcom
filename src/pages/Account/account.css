@@ -1,6 +1,6 @@
 .account {
   background-color: #fff;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   display: grid;
   grid-template-columns: minmax(200px, 226px) 1fr;

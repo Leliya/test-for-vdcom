@@ -54,7 +54,7 @@
 }
 
 .button_pagination:last-of-type {
-  transform: rotate(180deg);
+  background-image: url("../../images/icon-next-page.svg");
 }
 
 .button_pagination:disabled {

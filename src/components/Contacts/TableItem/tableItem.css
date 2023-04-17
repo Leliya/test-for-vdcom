@@ -1,13 +1,13 @@
-.tableitem__icon_edit{
+.tableitem__icon_edit {
   cursor: pointer;
-  background-image: url('../../../images/icon-edit.svg') ;
+  background-image: url("../../../images/icon-edit.svg");
   width: 21px;
   height: 21px;
 }
 
-.tableitem__icon_delete{
+.tableitem__icon_delete {
   cursor: pointer;
-  background-image: url('../../../images/icon-delete.svg') ;
+  background-image: url("../../../images/icon-delete.svg");
   width: 21px;
   height: 24px;
   margin-right: 15px;

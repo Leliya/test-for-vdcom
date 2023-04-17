@@ -1,9 +1,7 @@
 import "./header.css";
 import avatar from "../../images/avatar-plug.jpg";
 
-export function Header({onChange}) {
-  
-
+export function Header({ onChange }) {
   return (
     <header className="header">
       <form className="search">

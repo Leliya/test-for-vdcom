@@ -4,64 +4,68 @@ import { TableItem } from "./TableItem/TableItem";
 import data from "./mockContacts";
 import "./contacts.css";
 import { TableHeadColumn } from "./TableHeadColumn/TableHeadColumn";
+import { selectionSort } from "../../utils/selectionSort";
 
 export function Contacts({ searchRequest }) {
-  const { contacts } = data;
-  const [searchedContacts, setSearchedContacts] = useState();
+  let { contacts } = data;
+  const [transormedContacts, setTransormContacts] = useState();
   const [currentContacts, setCurrentContacts] = useState([]);
 
   const [currentPage, setCurrentPage] = useState(1);
-  console.log(searchRequest);
+
   useEffect(() => {
     if (searchRequest) {
       const filteredContacts = contacts.filter((contact) =>
-        contact.name.includes(searchRequest)
+        contact.name.toLowerCase().includes(searchRequest.toLowerCase())
       );
-      setSearchedContacts(filteredContacts);
-    }else{
-      setSearchedContacts("")
+      setTransormContacts(filteredContacts);
+    } else {
+      setTransormContacts("");
     }
+    setCurrentPage(1)
   }, [searchRequest, contacts]);
 
   useEffect(() => {
     setCurrentContacts(
-      (searchedContacts || contacts).slice(
+      (transormedContacts || contacts).slice(
         (currentPage - 1) * 9,
         (currentPage - 1) * 9 + 9
       )
     );
-  }, [currentPage, contacts, searchedContacts]);
-
-  // useEffect(()=>{
-  //   numberPages()
-  // })
+  }, [currentPage, contacts, transormedContacts]);
 
   const numberPages = useMemo(() => {
+    const lengthContactsArr = (transormedContacts || contacts).length;
     const max =
-      (searchedContacts || contacts).length % 9 === 0
-        ? (searchedContacts || contacts).length / 9
-        : (searchedContacts || contacts).length / 9 + 1;
+      lengthContactsArr % 9 === 0
+        ? lengthContactsArr / 9
+        : lengthContactsArr / 9 + 1;
     const pages = [];
     for (let i = 1; i < max; i++) {
       pages.push(i);
     }
     return pages;
-  }, [searchedContacts, contacts]);
+  }, [transormedContacts, contacts]);
 
   function changePage(number) {
     if (numberPages.includes(number)) setCurrentPage(number);
     else return false;
   }
 
-  // function searchByName() {
-  //   console.log(searchRequest);
-  // }
+  function sortContacts(e) {
+    const fieldId = e.target.parentNode.id;
+    const cursor = e.target.id;
+    setTransormContacts(
+      selectionSort(contacts, fieldId, cursor === "down" ? true : false)
+    );
+    setCurrentPage(1)
+  }
 
   return (
     <main className="contacts">
       <h2 className="contacts__title">Total Contacts</h2>
       <Button type="submit" classButton="addContact" buttonName="Add">
-        <div className="contacts__iconAddContact" disabled="falses"></div>
+        <div className="contacts__iconAddContact"></div>
       </Button>
       <table className="table">
         <thead className="table__title">
@@ -74,15 +78,45 @@ export function Contacts({ searchRequest }) {
               />
               <label htmlFor="editAll"></label>
             </TableHeadColumn>
-            <TableHeadColumn title="Client ID" sort={true} />
-            <TableHeadColumn title="Client name" sort={true} />
-            <TableHeadColumn title="TRN/PPSN" sort={true} />
-            <TableHeadColumn title="Year end" sort={true} />
-            <TableHeadColumn title="ARD" sort={true} />
-            <TableHeadColumn title="Company number" sort={true} />
-            <TableHeadColumn title="Email" />
-            <TableHeadColumn title="Phone number" />
-            <TableHeadColumn title="Company address" />
+            <TableHeadColumn
+              title="Client ID"
+              sort={true}
+              onClick={sortContacts}
+              id="id"
+            />
+            <TableHeadColumn
+              title="Client name"
+              sort={true}
+              onClick={sortContacts}
+              id="name"
+            />
+            <TableHeadColumn
+              title="TRN/PPSN"
+              sort={true}
+              onClick={sortContacts}
+              id="idNumber"
+            />
+            <TableHeadColumn
+              title="Year end"
+              sort={true}
+              onClick={sortContacts}
+              id="yearEnd"
+            />
+            <TableHeadColumn
+              title="ARD"
+              sort={true}
+              onClick={sortContacts}
+              id="ard"
+            />
+            <TableHeadColumn
+              title="Company number"
+              onClick={sortContacts}
+              sort={true}
+              id="companyNumber"
+            />
+            <TableHeadColumn title="Email" id="email" />
+            <TableHeadColumn title="Phone number" id="phone" />
+            <TableHeadColumn title="Company address" id="address" />
             <TableHeadColumn title="Action" />
           </tr>
         </thead>

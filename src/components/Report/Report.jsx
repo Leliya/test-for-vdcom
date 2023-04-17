@@ -1,7 +1,9 @@
+import "./report.css";
+
 export function Report() {
   return (
-    <main>
-      <h2 className="">Report</h2>
+    <main className="report">
+      <h2 className="report__title">Report</h2>
     </main>
   );
 }
