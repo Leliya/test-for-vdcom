@@ -1,0 +1,27 @@
+.tableItem__cellText {
+  width: auto;
+  text-overflow: inherit;
+  overflow: inherit;
+}
+
+.tableItem__sortButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 6px;
+  gap: 4px;
+}
+
+.tableItem__sortUp {
+  cursor: pointer;
+  background-image: url("../../../images/button-up.svg");
+  width: 10px;
+  height: 5px;
+}
+
+.tableItem__sortBottom {
+  cursor: pointer;
+  background-image: url("../../../images/button-down.svg");
+  width: 10px;
+  height: 5px;
+}
