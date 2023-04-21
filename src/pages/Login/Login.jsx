@@ -13,7 +13,7 @@ export function Login() {
     onChangeDataLogin({ ...dataLogin, [nameInput]: value });
   }
 
-  function onSubmit(evt) {
+  function sighIn(evt) {
     evt.preventDefault();
     console.log(dataLogin);
     //здесь должен быть промис для авторизации вида:
@@ -26,10 +26,10 @@ export function Login() {
   return (
     <main className="page">
       <div className="page__box">
-        <Logo classLogo="login"/>
+        <Logo classLogo="login" />
         <h1 className="page__title">Welcome To CRM System</h1>
         <h2 className="page__subtitle">Sign In To Your Account</h2>
-        <form className="page__form" onSubmit={onSubmit}>
+        <form className="page__form" onSubmit={sighIn}>
           <fieldset className="page__fields">
             <Input
               type="text"

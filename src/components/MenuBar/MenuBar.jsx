@@ -1,9 +1,22 @@
+import { useNavigate } from "react-router-dom";
 import { Button } from "../Button/Button";
 import { Logo } from "../Logo/Logo";
 import { MenuItem } from "./../MenuItem/MenuItem";
 import "./menuBar.css";
 
 export function MenuBar() {
+  const navigate = useNavigate();
+
+  function logout() {
+    // возврат на страницу авторизации
+    // соответственно тоже будет происходить поле получения ответа о корректном
+    // логауте со стороны сервера:
+    //  logout().then(()=>
+    //  navigate('/'))
+    //  .catch(err=>console.log(err))
+    navigate("/");
+  }
+
   return (
     <div className="menuBar">
       <Logo classLogo="account" />
@@ -18,6 +31,7 @@ export function MenuBar() {
           classButton="logout"
           buttonName="Log out"
           disabled={false}
+          onClick={logout}
         >
           <div className="menuBar__iconLogout"></div>
         </Button>
